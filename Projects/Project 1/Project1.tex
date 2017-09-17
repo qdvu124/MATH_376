@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage[version=3]{mhchem}
+
+\title{%
+	MATH 376:Numerical Analysis \\
+	\large  Project 1: Greenhouse gases and rainwater
+	}
+\author{Quan Vu}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	\section{Abstract}
+	This project aims at examining the relationship between the steady 	rise in atmospheric levels of several greenhouse gases and the pH of rainwater within the coressponding areas. In particular, this project looks at the annual levels of atmospheric carbon dioxide (\ce{CO2}) from the year 1959 to 2016 in Mauna Loa, Hawaiii. By computing the pH of water using the given data, it can be shown that the pH of rainwater \textbf{RESULTS GO HERE}.
+	
+	\section{Introduction}
+	
+	\subsection{Background information}
+	It is well documented that the atmospheric levels of several “greenhouse” gases have been increasing over the past 57 years. It is also know that within areas with generally low human activities, carbon dioxide is the primary determinant of the pH of rainwater.
+	
+	\subsection{Problem description}
+	This project aims at using the existing data regarding the levels of atmospheric \ce{CO2} around Mauna Loa to calculate the pH of rainwater in the same region over the years. This can be done with the help of five equations governing the chemistry of rainwater:
+	\[ K_1 = \frac{10^6[H^+][HCO_3^-]}{K_HCO_2} \tag{1} \]
+	\[ K_2 = \frac{[H^+][CO_3^{-2}]}{[HCO_3^-]} \tag{2} \]
+	\[ K_\omega = [H^+][OH^-] \tag{3} \]
+	\[ c_T = \frac{K_HCO_2}{10^6} + [HCO_3^-] + [CO_3^{-2}] \tag{4} \]
+	\[ 0 = [HCO_3^-] + 2[CO_3^{-2}] + [OH^-] - [H^+] \tag{5} \]
+	where ${K_H}$ is Henry's constant, ${K_1}$, ${K_2}$ and ${K_\omega}$ are equilibrium coefficients. The five unknowns are ${c_T}$ = total inorganic carbon, ${HCO_3^-}$ = bicarbonate, ${[CO_3^{-2}]}$ = carbonate, ${[H^+]}$ = hydrogen ion, ${[OH^-]}$ = hydroxyl ion.
+	One major assumption with this approach is that we fix \ce{CO2} as the sole factor contributing to the pH of rainwater. In reality, many other greenhouse gases can also contribute to the fluctuation of pH.
+
+	\subsection{Outline}
+	Given the values ${K_H  = 10^{-1.46}}$, ${ K_1 =  10^{-6.3}}$, ${ K_2 = 10^{-10.3}}$, ${ K_\omega = 10^{-14}}$ and the annual \ce{CO2}, we can reduce equation (5) to be one that is in terms of ${[H^+]}$. We can compute ${[H^+]}$ and calculate the pH of rainwater using the equation:
+	\[ pH = -log_{10}[H^+] \tag{6} \]
+	
+	\section{Numerical method}
+	Firstly we convert the given equations so that the unknowns in (5) can be expressed in terms of ${[H^+]}$. \\
+	From (1):
+	\[ [HCO_3^-] = \frac{K_HK_1CO_2}{10^6[H^+]} \tag{1a} \] \\
+	From (2) and from (1a):
+	\[ [CO_3^{-2}] = \frac{K_2[HCO_3^-]}{[H^+]} \tag{2a} = \frac{K_HK_1K_2CO_2}{10^6[H^+]^2} \] \\
+	From (3):
+	\[ [OH^-] = \frac{K_\omega}{[H^+]} \tag{3a} \] \\
+	From (4), (2a) and (3a):
+	\[ c_T = \frac{K_HCO_2}{10^6} + \frac{K_HK_1CO_2}{10^6[H^+]} + \frac{K_HK_1K_2CO_2}{10^6[H^+]^2} \tag{4a} \]
+	From 5, and from (1a), (2a), (3a):
+	\[ 0 =  \frac{K_HK_1CO_2 + 10^6K_\omega}{10^6[H^+]} + \frac{2K_HK_1K_2CO_2}{10^6[H^+]^2}] - [H^+] \tag{5a} \]
+	By using the bisection method on the above equation, we can find ${[H^+]}$.
+\end{document}

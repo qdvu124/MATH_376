@@ -1,5 +1,8 @@
 \documentclass{article}
 \usepackage[version=3]{mhchem}
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{longtable}
 
 \title{%
 	MATH 376:Numerical Analysis \\
@@ -12,7 +15,7 @@
 	\maketitle
 	
 	\section{Abstract}
-	This project aims at examining the relationship between the steady 	rise in atmospheric levels of several greenhouse gases and the pH of rainwater within the coressponding areas. In particular, this project looks at the annual levels of atmospheric carbon dioxide (\ce{CO2}) from the year 1959 to 2016 in Mauna Loa, Hawaiii. By computing the pH of water using the given data, it can be shown that the pH of rainwater \textbf{RESULTS GO HERE}.
+	This project aims at examining the relationship between the steady 	rise in atmospheric levels of several greenhouse gases and the pH of rainwater within the coressponding areas. In particular, this project looks at the annual levels of atmospheric carbon dioxide (\ce{CO2}) from the year 1959 to 2016 in Mauna Loa, Hawaiii. By computing the pH of water using the given data, it can be shown that the pH of rainwater has decreased from 5.63 to 5.58 over the years, and the trend shows that the pH level will likely drop lower.
 	
 	\section{Introduction}
 	
@@ -46,4 +49,18 @@
 	From 5, and from (1a), (2a), (3a):
 	\[ 0 =  \frac{K_HK_1CO_2 + 10^6K_\omega}{10^6[H^+]} + \frac{2K_HK_1K_2CO_2}{10^6[H^+]^2}] - [H^+] \tag{5a} \]
 	By using the bisection method on the above equation, we can find ${[H^+]}$.
+	
+	\section{Results}
+	Using the methodology discussed above, we obtain the following results of the pH levels in rainwater in Mauna Loa, from 1959 to 2016:\\
+	\includegraphics[scale=0.6]{untitled.jpg} \\
+	For detailed results, consult the csv file in the project directory.
+	
+	\section{Discussion}
+	From the calculations taken, the pH in the year 1959 was 5.63, and the pH calculated in 2016 was 5.58. While the decline seems small, we must keep in mind that pH is calculated by taking ${log_{10}}{[H^+]}$. This means that the concentration of Hydrogen ions in rainwater has increased over the year, and the trend does not seem to be stopping. In fact this trend can be modeled using the polyfit function in Matlab to give:
+	\[pH = -5.523 \times 10^{-6}t^2 + 0.02101t - 14.33\] 
+	where t denotes the year. If the trend continues, the pH of rainwater will drop below the threshold of 5.0, creating acid rain.
+	\newpage
+	\section{Bibliography}
+	Data for annual atmospheric levels of \ce{CO2} are taken from: \\
+	https://www.esrl.noaa.gov/gmd/ccgg/trends/data.html
 \end{document}

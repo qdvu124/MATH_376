@@ -76,3 +76,26 @@ Pt(30);
 % 249633
 Pt(60)
 % 3.067673443950788e+05. Population is declining
+
+clear all;
+clear clc;
+% Redoing question 8
+% From the first equation, we have P = 179323 * exp c
+% The second equation can also be reduced to produce c = (ln A) / (1 -
+% exp(-10k) where A = 203302 / 179323
+% Expressing the last equation in terms of K gives
+A = 203302 / 179323;
+f = @(k) 179323 .* exp(log(A) ./ (1 - exp(-10 .* k))) .* exp(-log(A) .* exp(-20 .* k) ./ (1 - exp(-10 .* k))) - 226542;
+bisectM(f, 0.01, 0.02, 30, 1e-6);
+% Gives the result k = 0.01480042
+k = 0.01480042;
+% Gives the result c = 0.912274637914390
+c = log (A) / (1 - exp(-10 * k));
+% Gives the result P = 4.465106655003193e+05
+P = 179323 * exp(c);
+
+Pt = @(t) P * exp(-c * exp(-k * t));
+Pt(30);
+% 2.487076289849369e+05. A pretty good approximation compared to 249633
+Pt(60)
+% 3.067680445625613e+05. Populuation is declining

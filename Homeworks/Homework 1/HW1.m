@@ -76,10 +76,10 @@ title('f(x) = 1/(0.001x^2 + 1)');
 
 % Question 6
 theta =  linspace(0, 2 * pi, 500);
-a = 2;
-b = 3;
-x0 = 1;
-y0 = 3;
+a = 3;
+b = sqrt(13);
+x0 = 3;
+y0 = -1;
 x = x0 + a * cos(theta);
 y = y0 + b * sin(theta);
 

@@ -23,11 +23,12 @@ disp(Ab);
 for i = 1:(n-1)
     pivot = Ab(i,i);
     if abs(pivot) < ptol
-       for k = i+1:n
-           if abs(Ab(k,i)) > ptol
+        fprintf("Partial pivoting");
+        for k = i+1:n
+            if abs(Ab(k,i)) > ptol
                swapRow(i, k);
-           end
-       end
+            end
+        end
     end
     
     for k = (i+1):n % j = index of next row to be eliminated

@@ -25,7 +25,7 @@ for i = 1:(n-1)
     if abs(pivot) < ptol
        for k = i+1:n
            if abs(Ab(k,i)) > ptol
-               swapRow(i, k);
+               swapRow(Ab, i, k);
            end
        end
     end

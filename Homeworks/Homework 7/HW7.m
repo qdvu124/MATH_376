@@ -10,7 +10,7 @@ close all;
     disp(U)
     A\b1
     A\b2
-% Question 2
+% Question 3
      A = [2 -1 1; 3 3 9; 3 3 5];
      [L, U, P] = lu(A);
      disp(L)

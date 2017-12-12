@@ -3,6 +3,9 @@
 \usepackage{graphicx}
 \usepackage{csvsimple}
 \usepackage{longtable}
+\usepackage{enumitem}
+\newlist{steps}{enumerate}{1}
+\setlist[steps, 1]{label = Step \arabic*:}
 \usepackage{listings}
 \usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
@@ -32,6 +35,26 @@
 
 \begin{document}
 	\maketitle
+	\chapter{Introduction}
+	\section{Structure of the book}
+	This book is intended to consolidate the knowledge that I've gathered through my time in the course MATH376: Numerical Analysis at Colgate University. I dedicate a chapter before each project to explain some of the numerical methods employed in the project itself.
+	\section{Acknowledgements}
+	I would like to take this opportunity to thank professor Seo Gunog for organizing and teaching this class. All the knowledge that I have gathered in this book is due to her teaching and guidance inside and outside class. Being a computer science and mathematics double major, I was able to find a very meaningful connection between the two subjects through this course, and altogther it has been a wonderful journey.\\\\
+	I would also like to take this opportunity to thank my fellow classmates, Kevin Wibisono and Ruoyu (Tony) Guo, for always being there to support me throughout this course.  
+	\chapter{First project - Bisection method}
+	\section{Method explanation}
+	Imagine that you have a dictionary, and you are trying to find a definition of a word. What would you likely do? I myself would open the dictionary, and look at the page that I opened. If the words in those page come before the word that I'm looking for, I try to find a page between that current page and the end. If not, I do the oposite and find a page between the beginning and the current page. I repeat the process until I find the desired page/word.\\\\
+	The bisection method works by employing similar intuition. The assumption is that we have a function whose root we want to determine, and we know for a fact that the function changes sign around this root. Then by using 2 intial guesses, acting as the beginning and the end of the dictionary, we look for a potential root in the middle. If this is the root that we want, then we just return from the process. Otherwise, we update the boundary of our "dictionary", and repeat the process until we find a satisfiable answer.
+	\section{Method formalization}
+	\begin{steps}
+		\item Rewrite the equation in the form ${f(x) = 0}$
+		\item Plot the graph of the function to determine the rough estimation of the desired root.
+		\item Choose initial guesses ${a}$ and ${b}$ around the root, such that the function changes sign around this interval, i.e ${f(a) \times f(b)<0}$
+		\item Find the estimated root, ${x_i = \frac{a + b}{2}}$
+		\item If ${f(x_i) = 0}$, we're done, and we can return. Otherwise depending on the sign of ${f(x_i)}$, we update ${a}$ and ${b}$ accordingly. If ${f(x_i)}$ has the same sign as ${f(a)}$, then ${a = x_i}$, else ${b = x_i)}$. Return to step 4.
+	\end{steps}
+	\section{Error discussion}
+	We assume that our next estimation is the real solution. From such assumption, it's easy to see that we are dividing the error in half by every time we are making a new estimation. The upper bound for the bisection method is ${\frac{b - a}{2^(n+1)}}$ where n is the number of iteration.
 	\chapter{Greenhouse gases and pH}
 	\section{Abstract}
 	This chapter aims at examining the relationship between the steady 	rise in atmospheric levels of several greenhouse gases and the pH of rainwater within the coressponding areas. In particular, this project looks at the annual levels of atmospheric carbon dioxide (\ce{CO2}) from the year 1959 to 2016 in Mauna Loa, Hawaiii. By computing the pH of water using the given data, it can be shown that the pH of rainwater has decreased from 5.63 to 5.58 over the years, and the trend shows that the pH level will likely drop lower.
@@ -68,7 +91,7 @@
 	From 5, and from (1a), (2a), (3a):
 	\[ 0 =  \frac{K_HK_1CO_2 + 10^6K_\omega}{10^6[H^+]} + \frac{2K_HK_1K_2CO_2}{10^6[H^+]^2}] - [H^+] \tag{5a} \]
 	By using the bisection method on the above equation, we can find ${[H^+]}$. \\
-	A short snippet of Matlab code is attached in the appendix for this section to show how the bisection method finds the root of the function. To put in simple terms, the bisection method starts out with 2 initial guesses on both sides of a root of a function. A caveat that we need to care of is that the function must change sign around this root. By iteratively assumming that the root is in the middle of the boundary, the method continues cutting the estimated interval in half until a satisfactory estimation for the root is found.
+	A short snippet of Matlab code is attached in the appendix for this section to show how the bisection method finds the root of the function. 
 	
 	\section{Results}
 	Using the methodology discussed above, we obtain the following results of the pH levels in rainwater in Mauna Loa, from 1959 to 2016:\\
